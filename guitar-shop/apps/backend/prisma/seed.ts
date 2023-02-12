@@ -1,115 +1,56 @@
-import { PrismaClient } from '@prisma/client';
+import { Guitar, StringsCount } from '@guitar-shop/shared-types';
+import { PrismaClient, UserRole } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function fillDb() {
-  await prisma.publication.upsert({
+  await prisma.user.upsert({
     where: { id: 1 },
     update: {},
     create: {
-      originalId: 1,
-      userId: 'userId#1',
-      originalUserId: 'userId#1',
-      type: 'Link',
-      content: {
-        link: 'wwww.someVideoLink.com',
-        linkDescription: 'This is a non-existent link to a non-existent video',
-      },
-      comments: {
+      email: 'admin@notify.local',
+      password: 'admin',
+      name: 'admin',
+      role: UserRole.Admin,
+    }
+  });
+  await prisma.user.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      email: 'boris@notify.local',
+      password: '123456',
+      name: 'Boris',
+    }
+  });
+  await prisma.product.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      title: 'Liana Z100',
+      description: 'Это описание гитары Liana Z10',
+      photo: 'add-item-1.png',
+      guitarType: Guitar.Electric,
+      article: '123456789',
+      stringsCount: StringsCount.Six,
+      Comment: {
         create: [
           {
-            userId: 'userId#1',
+            advantages: 'some advantages',
+            disadvantages: 'some disadvantages',
+            score: 5,
+            userId: 1,
             content: "This comment from user #1 for publication #1"
           },
           {
-            userId: 'userId#2',
+            advantages: 'some advantages',
+            disadvantages: 'some disadvantages',
+            score: 5,
+            userId: 2,
             content: "This comment from user #2 for publication #1"
           }
         ]
       },
-      tags: {
-        create: [
-          {
-            name: 'someTag#1',
-          },
-          {
-            name: 'someTag#2',
-          }
-        ]
-      }
-    }
-  });
-  await prisma.publication.upsert({
-    where: { id: 2 },
-    update: {},
-    create: {
-      originalId: 2,
-      userId: 'userId#2',
-      originalUserId: 'userId#2',
-      type: 'Text',
-      content: {
-        title: 'This is the title for Text publication',
-        announcement: 'This is an announcement for Text publication',
-        text: 'This is the content for Text publication',
-      },
-      comments: {
-        create: [
-          {
-            userId: 'userId#1',
-            content: "This comment from user #1 for publication #2"
-          },
-          {
-            userId: 'userId#2',
-            content: "This comment from user #2 for publication #2"
-          }
-        ]
-      },
-      tags: {
-        create: [
-          {
-            name: 'someTag#3',
-          },
-          {
-            name: 'someTag#4',
-          }
-        ]
-      }
-    }
-  });
-  await prisma.publication.upsert({
-    where: { id: 3 },
-    update: {},
-    create: {
-      originalId: 3,
-      userId: 'userId#3',
-      originalUserId: 'userId#3',
-      type: 'Quote',
-      content: {
-        quote: 'This is the content for Quote publication',
-        quoteAuthor: 'John Doe',
-      },
-      comments: {
-        create: [
-          {
-            userId: 'userId#3',
-            content: "This comment from user #3 for publication #3"
-          },
-          {
-            userId: 'userId#4',
-            content: "This comment from user #4 for publication #3"
-          }
-        ]
-      },
-      tags: {
-        create: [
-          {
-            name: 'someTag#5',
-          },
-          {
-            name: 'someTag#6',
-          }
-        ]
-      }
     }
   });
   console.info('🤘️ Database was filled');

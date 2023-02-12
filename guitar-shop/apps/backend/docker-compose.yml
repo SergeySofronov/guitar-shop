@@ -21,7 +21,7 @@ services:
       - postgres_network
 
   pgadmin:
-    container_name: pgadmin
+    container_name: pgadmin-guitar-shop
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: keks@htmlacademy.local
@@ -30,7 +30,7 @@ services:
     volumes:
       - ./pgadmin:/var/lib/pgadmin
     ports:
-      - "8082:80"
+      - "8081:80"
     restart: unless-stopped
     networks:
       - postgres_network

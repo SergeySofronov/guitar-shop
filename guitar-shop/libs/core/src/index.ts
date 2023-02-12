@@ -6,3 +6,7 @@ export * from './lib/env-schemas/file-upload.schema';
 export * from './lib/env-schemas/env.app-port.schema';
 export * from './lib/guards/jwt-auth.guard';
 export * from './lib/strategies/jwt.strategy';
+export * from './lib/entity.interface';
+export * from './lib/crud-repository.interface';
+export * from './lib/helpers';
+export * from './lib/validate/validity-messages';

@@ -12,14 +12,14 @@ datasource db {
 }
 
 enum UserRole {
-  admin
-  user
+  Admin
+  User
 }
 
 enum GuitarType {
-  electric
-  acoustics
-  ukulele
+  Electric
+  Acoustics
+  Ukulele
 }
 
 model User {
@@ -27,7 +27,7 @@ model User {
   email     String   @unique()
   name      String
   password  String
-  role      UserRole @default(user)
+  role      UserRole @default(User)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
@@ -39,7 +39,7 @@ model Product {
   title         String
   description   String
   photo         String
-  guitarType    GuitarType  @default(electric)
+  guitarType    GuitarType  @default(Electric)
   article       String
   stringsCount  Int
   rating        Int         @default(0)

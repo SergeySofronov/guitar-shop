@@ -1,0 +1,31 @@
+# Создать (зарегистрировать) пользователя
+POST /guitar-shop/users/register HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+
+{
+  "email": "user@user.ru",
+  "name": "John Doe",
+  "password": "123456"
+}
+###
+
+# Проверить авторизацию пользователя
+GET  /guitar-shop/users/login HTTP/1.1
+Host: localhost:3333
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2NzYyMTkzOTgsImV4cCI6MTY3NjIxOTk5OH0.nP02zr3oCKxADIQA3foszxoI_IfbMk5jtuhh0zFvje4
+###
+
+
+# Авторизоваться (получить токен)
+POST /guitar-shop/users/login HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+
+{
+  "email": "user@user.ru",
+  "password": "123456"
+}
+###
+
+

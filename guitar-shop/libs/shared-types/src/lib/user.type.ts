@@ -1,4 +1,4 @@
-import { UserRole } from './user-role.enum';
+import { UserRoleType } from './user-role.enum';
 
 export type User = {
   id?: number;
@@ -7,5 +7,5 @@ export type User = {
   createdAt?: Date;
   updatedAt?: Date;
   password: string;
-  role: UserRole;
+  role?: UserRoleType;
 }
