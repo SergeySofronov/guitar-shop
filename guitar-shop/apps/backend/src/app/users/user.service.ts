@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { MailService } from '../mail/mail.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UserExistsException, UserNotFoundEmailException, UserPasswordWrongException } from './exceptions';
@@ -11,6 +12,7 @@ export class UserService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
+    private readonly mail: MailService,
     private readonly logger: Logger,
   ) { }
 
@@ -25,7 +27,7 @@ export class UserService {
     const userEntity = await new UserEntity(dto).setPassword(password);
     const createdUser = await this.userRepository.create(userEntity);
 
-    //todo: отсылка на email данных пользователя
+    await this.mail.sendNotifyNewUser(userEntity);
     return createdUser;
   }
 

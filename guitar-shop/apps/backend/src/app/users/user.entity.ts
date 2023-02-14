@@ -10,6 +10,7 @@ export class UserEntity implements Entity<UserEntity, User>, User {
   public email: string;
   public name: string;
   public password: string;
+  public origin: string;
   public role: UserRoleType;
   public createdAt: Date;
   public updatedAt: Date;
@@ -38,6 +39,7 @@ export class UserEntity implements Entity<UserEntity, User>, User {
     this.name = user.name;
     this.role = UserRole.User;
     this.password = user.password;
+    this.origin = user.password;
     this.createdAt = user.createdAt || new Date();
     this.updatedAt = user.updatedAt || new Date();
   }

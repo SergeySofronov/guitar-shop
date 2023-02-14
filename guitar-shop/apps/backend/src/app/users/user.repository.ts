@@ -10,6 +10,7 @@ export class UserRepository implements CRUDRepositoryInterface<UserEntity, numbe
 
   public async create(item: UserEntity): Promise<User> {
     const entityData = item.toObject();
+    delete entityData.origin;
     return this.prisma.user.create({
       data: {
         ...entityData,
@@ -23,18 +24,24 @@ export class UserRepository implements CRUDRepositoryInterface<UserEntity, numbe
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  findById(_id: number): Promise<User> {
-    throw new Error('Method not implemented.');
+  public async findById(id: number): Promise<User> {
+    return this.prisma.user.findFirst({
+      where: { id },
+    });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  update(_id: number, _item: Partial<UserEntity>): Promise<User> {
-    throw new Error('Method not implemented.');
+  public async update(id: number, item: Partial<UserEntity>): Promise<User> {
+    return this.prisma.user.update({
+      where: { id },
+      data: {
+        ...item,
+      }
+    })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  destroy(_id: number, _ids: number[]): Promise<void> {
-    throw new Error('Method not implemented.');
+  public async destroy(id: number): Promise<void> {
+    await this.prisma.user.delete({
+      where: { id },
+    })
   }
 }
