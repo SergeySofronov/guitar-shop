@@ -1,0 +1,16 @@
+# Создать карточку товара
+POST /guitar-shop/products/ HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5Abm90aWZ5LmxvY2FsIiwibmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNjc2NTc1NDIxLCJleHAiOjE2NzY1NzYwMjF9.NqQFCiFswTzyR9Ke8RRIFAD3UXAhopyW49yzYdsjhfs
+
+{
+  "title": "Framus Diablo",
+  "description": "Electric guitar with oil finish. Handmade in Germany",
+  "guitarType": "Electric",
+  "article": "123456",
+  "stringsCount": 6,
+  "rating": 5,
+  "price": 100000
+}
+###

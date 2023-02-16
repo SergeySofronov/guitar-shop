@@ -1,15 +1,20 @@
 import { Guitar, StringsCount } from '@guitar-shop/shared-types';
 import { PrismaClient, UserRole } from '@prisma/client';
+import { genSalt, hash} from 'bcrypt';
+import { SALT_ROUNDS } from '../src/app/users/user.constant';
 
 const prisma = new PrismaClient();
 
 async function fillDb() {
+  const salt = await genSalt(SALT_ROUNDS);
+  const password = await hash('admin', salt);
+
   await prisma.user.upsert({
     where: { id: 1 },
     update: {},
     create: {
       email: 'admin@notify.local',
-      password: 'admin',
+      password,
       name: 'admin',
       role: UserRole.Admin,
     }

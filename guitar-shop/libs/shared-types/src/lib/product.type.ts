@@ -5,8 +5,6 @@ export type Product = {
   id?: number;
   title: string;
   description: string;
-  createdAt?: Date;
-  updatedAt?: Date;
   photo: string;
   guitarType: GuitarType;
   article: string;
@@ -14,4 +12,6 @@ export type Product = {
   rating: number;
   price: number;
   commentsCount: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

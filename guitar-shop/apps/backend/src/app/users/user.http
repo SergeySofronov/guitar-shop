@@ -13,7 +13,7 @@ Content-Type: application/json
 # Проверить авторизацию пользователя
 GET  /guitar-shop/users/login HTTP/1.1
 Host: localhost:3333
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoidXNlckB1c2VyLnJ1IiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2NzYyMTkzOTgsImV4cCI6MTY3NjIxOTk5OH0.nP02zr3oCKxADIQA3foszxoI_IfbMk5jtuhh0zFvje4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5Abm90aWZ5LmxvY2FsIiwibmFtZSI6ImFkbWluIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2NzY1NzQyNjIsImV4cCI6MTY3NjU3NDg2Mn0.L-IHdsZnsGQI22zL4vUzwRgCRRKMvFtY9VNdGxYtwiU
 ###
 
 
@@ -28,4 +28,14 @@ Content-Type: application/json
 }
 ###
 
+# Авторизоваться (admin)
+POST /guitar-shop/users/login HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+
+{
+  "email": "admin@notify.local",
+  "password": "admin"
+}
+###
 

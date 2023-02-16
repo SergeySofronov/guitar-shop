@@ -1,9 +1,9 @@
+import { UserExistsException, UserNotFoundEmailException, UserPasswordWrongException } from '@guitar-shop/core';
 import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { MailService } from '../mail/mail.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { UserExistsException, UserNotFoundEmailException, UserPasswordWrongException } from './exceptions';
 import { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';
 
@@ -40,6 +40,7 @@ export class UserService {
     }
 
     const userEntity = new UserEntity(existUser);
+    userEntity.role = existUser.role;
     if (! await userEntity.comparePassword(password)) {
       throw new UserPasswordWrongException();
     }

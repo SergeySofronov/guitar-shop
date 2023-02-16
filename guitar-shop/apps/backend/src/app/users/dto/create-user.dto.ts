@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 import { IsEmail, MaxLength, MinLength } from 'class-validator';
 import { ValidityMessage as VM } from '@guitar-shop/core';
 import { UserValidity as UV } from '../user.constant';
@@ -17,6 +18,7 @@ export class CreateUserDto {
     example: 'John Doe',
     required: true,
   })
+  @Transform(({ value }) => value instanceof String ? value.trim() : value)
   @MinLength(UV.NameMinLength, { message: VM.MinValueMessage })
   @MaxLength(UV.NameMaxLength, { message: VM.MaxValueMessage })
   public name: string;
@@ -26,6 +28,7 @@ export class CreateUserDto {
     example: '123456',
     required: true,
   })
+  @Transform(({ value }) => value instanceof String ? value.trim() : value)
   @MinLength(UV.PasswordMinLength, { message: VM.MinValueMessage })
   @MaxLength(UV.PasswordMaxLength, { message: VM.MaxValueMessage })
   public password: string;
