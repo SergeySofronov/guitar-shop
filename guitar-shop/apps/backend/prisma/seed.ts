@@ -1,6 +1,5 @@
-import { Guitar, StringsCount } from '@guitar-shop/shared-types';
 import { PrismaClient, UserRole } from '@prisma/client';
-import { genSalt, hash} from 'bcrypt';
+import { genSalt, hash } from 'bcrypt';
 import { SALT_ROUNDS } from '../src/app/users/user.constant';
 
 const prisma = new PrismaClient();
@@ -32,30 +31,39 @@ async function fillDb() {
     where: { id: 1 },
     update: {},
     create: {
-      title: 'Liana Z100',
-      description: 'Это описание гитары Liana Z10',
-      photo: 'add-item-1.png',
-      guitarType: Guitar.Electric,
+      title: 'Framus',
+      description: 'Electric guitar with oil finish',
+      photo: 'default.jpg',
+      guitarType: "Electric",
       article: '123456789',
-      stringsCount: StringsCount.Six,
-      Comment: {
-        create: [
-          {
-            advantages: 'some advantages',
-            disadvantages: 'some disadvantages',
-            score: 5,
-            userId: 1,
-            content: "This comment from user #1 for publication #1"
-          },
-          {
-            advantages: 'some advantages',
-            disadvantages: 'some disadvantages',
-            score: 5,
-            userId: 2,
-            content: "This comment from user #2 for publication #1"
-          }
-        ]
-      },
+      stringsCount: 6,
+      price: 1000,
+    }
+  });
+  await prisma.product.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      title: 'Fender',
+      description: 'This is ukulele',
+      photo: 'default.jpg',
+      guitarType: "Ukulele",
+      article: '123456789',
+      stringsCount: 6,
+      price: 200,
+    }
+  });
+  await prisma.product.upsert({
+    where: { id: 3 },
+    update: {},
+    create: {
+      title: 'Ibanez',
+      description: 'This is acoustic guitar',
+      photo: 'default.jpg',
+      guitarType: "Acoustic",
+      article: '123456789',
+      stringsCount: 6,
+      price: 500,
     }
   });
   console.info('🤘️ Database was filled');

@@ -12,32 +12,32 @@ export class ProductEntity implements Entity<ProductEntity, Product>, Product {
   public guitarType: GuitarType;
   public article: string;
   public stringsCount: StringsCount;
-  public rating: number;
+  public rating?: number;
   public price: number;
-  public commentsCount: number;
-  public createdAt: Date;
-  public updatedAt: Date;
+  public commentsCount?: number;
+  public createdAt?: Date;
+  public updatedAt?: Date;
 
-  constructor(user: Product) {
-    this.fillEntity(user);
+  constructor(product: Product) {
+    this.fillEntity(product);
   }
 
   public toObject() {
     return { ...this };
   }
 
-  public fillEntity(user: Product) {
-    this.id = user.id;
-    this.title = user.title;
-    this.description = user.description;
+  public fillEntity(product: Product) {
+    this.id = product.id;
+    this.title = product.title;
+    this.description = product.description;
     this.photo = ProductDefaults.Photo;
-    this.article = user.article;
-    this.guitarType = user.guitarType || Guitar.Electric;
-    this.stringsCount = user.stringsCount || StringsCount.Six;
-    this.rating = user.rating || ProductDefaults.Rating;
-    this.price = user.price || ProductDefaults.Price;
+    this.article = product.article;
+    this.guitarType = product.guitarType || Guitar.Electric;
+    this.stringsCount = product.stringsCount || StringsCount.Six;
+    this.rating = product.rating || ProductDefaults.Rating;
+    this.price = product.price || ProductDefaults.Price;
     this.commentsCount = ProductDefaults.CommentsCount;
-    this.createdAt = user.createdAt || new Date();
-    this.updatedAt = user.updatedAt || new Date();
+    this.createdAt = product.createdAt || new Date();
+    this.updatedAt = product.updatedAt || new Date();
   }
 }

@@ -72,13 +72,6 @@ export class ProductRdo {
   public price: number;
 
   @ApiProperty({
-    description: 'Number of product reviews',
-    example: `${PV.PriceMaxValue}`,
-  })
-  @Expose()
-  public commentsCount: number;
-
-  @ApiProperty({
     description: 'Date the comment was created',
     example: `${new Date()}`,
   })

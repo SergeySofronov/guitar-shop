@@ -36,13 +36,13 @@ export class UserService {
     const existUser = await this.userRepository.findByEmail(email);
 
     if (!existUser) {
-      throw new UserNotFoundEmailException(dto.email);
+      throw new UserNotFoundEmailException(this.logger, dto.email);
     }
 
     const userEntity = new UserEntity(existUser);
     userEntity.role = existUser.role;
     if (! await userEntity.comparePassword(password)) {
-      throw new UserPasswordWrongException();
+      throw new UserPasswordWrongException(this.logger);
     }
 
     return userEntity.toObject();

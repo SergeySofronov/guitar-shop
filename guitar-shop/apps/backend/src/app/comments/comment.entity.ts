@@ -12,26 +12,26 @@ export class CommentEntity implements Entity<CommentEntity, Comment>, Comment {
   public content: string;
   public advantages: string;
   public disadvantages: string;
-  public createdAt: Date;
-  public updatedAt: Date;
+  public createdAt?: Date;
+  public updatedAt?: Date;
 
-  constructor(user: Comment) {
-    this.fillEntity(user);
+  constructor(comment: Comment) {
+    this.fillEntity(comment);
   }
 
   public toObject() {
     return { ...this };
   }
 
-  public fillEntity(user: Comment) {
-    this.id = user.id;
-    this.userId = user.userId;
-    this.productId = user.productId;
-    this.score = user.score || CommentDefaults.Score;
-    this.content = user.content;
-    this.advantages = user.advantages;
-    this.disadvantages = user.disadvantages;
-    this.createdAt = user.createdAt || new Date();
-    this.updatedAt = user.updatedAt || new Date();
+  public fillEntity(comment: Comment) {
+    this.id = comment.id;
+    this.userId = comment.userId;
+    this.productId = comment.productId;
+    this.score = comment.score || CommentDefaults.Score;
+    this.content = comment.content;
+    this.advantages = comment.advantages;
+    this.disadvantages = comment.disadvantages;
+    this.createdAt = comment.createdAt || new Date();
+    this.updatedAt = comment.updatedAt || new Date();
   }
 }

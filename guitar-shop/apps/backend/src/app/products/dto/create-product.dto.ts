@@ -84,4 +84,6 @@ export class CreateProductDto {
   @Min(PV.PriceMinValue, { message: VM.MinValueMessage })
   @Max(PV.PriceMaxValue, { message: VM.MaxValueMessage })
   public price: number;
+
+  public photo?: string;
 }

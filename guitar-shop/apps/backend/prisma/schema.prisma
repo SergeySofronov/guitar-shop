@@ -18,7 +18,7 @@ enum UserRole {
 
 enum GuitarType {
   Electric
-  Acoustics
+  Acoustic
   Ukulele
 }
 
@@ -47,8 +47,8 @@ model Product {
   commentsCount Int         @default(0)
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @default(now())
-  OrderItem     OrderItem[]
-  Comment       Comment[]
+  orderItems    OrderItem[]
+  comments      Comment[]
 
   @@map("products")
 }
@@ -63,7 +63,7 @@ model OrderItem {
   Order     Order?  @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   Int?
 
-  @@map("order-items")
+  @@map("orderItems")
 }
 
 model Order {

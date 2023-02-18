@@ -9,9 +9,9 @@ export type Product = {
   guitarType: GuitarType;
   article: string;
   stringsCount: StringsCount;
-  rating: number;
+  rating?: number;
   price: number;
-  commentsCount: number;
+  commentsCount?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }

@@ -1,15 +1,20 @@
-export const CommentDefaults = {
-  Score: 0,
-} as const;
-
 export enum CommentValidity {
   IdMinValue = 0,
-  AdvantagesMaxLength = 50,
-  AdvantagesMinLength = 100,
-  DisadvantagesMaxLength = 50,
-  DisadvantagesMinLength = 100,
-  ContentMaxLength = 5,
-  ContentMinLength = 1024,
+  AdvantagesMinLength = 50,
+  AdvantagesMaxLength = 100,
+  DisadvantagesMinLength = 50,
+  DisadvantagesMaxLength = 100,
+  ContentMinLength = 5,
+  ContentMaxLength = 1024,
   ScoreMinValue = 1,
   ScoreMaxValue = 5,
 }
+
+export const CommentDefaults = {
+  Score: CommentValidity.ScoreMinValue,
+} as const;
+
+export const CommentQueryDefault = {
+  DEFAULT_COMMENT_QUERY_LIMIT: 50,
+  DEFAULT_COMMENT_SORT_DIRECTION: 'desc',
+} as const;

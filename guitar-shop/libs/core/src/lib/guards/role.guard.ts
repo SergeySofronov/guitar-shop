@@ -1,10 +1,13 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, Logger } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { UserNotAdminException } from '../users-exceptions';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
+  constructor(
+    private reflector: Reflector,
+    private logger: Logger
+  ) { }
 
   canActivate(context: ExecutionContext): boolean {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
@@ -13,10 +16,10 @@ export class RolesGuard implements CanActivate {
     }
     const request = context.switchToHttp().getRequest();
 
-    if(roles.includes(request.user?.role)){
+    if (roles.includes(request.user?.role)) {
       return true;
     }
 
-    throw new UserNotAdminException(request.user?.sub);
+    throw new UserNotAdminException(this.logger, request.user?.sub);
   }
 }

@@ -18,7 +18,7 @@ export function getMulterOptions() {
   return {
     storage: diskStorage({
       destination: (req: Request, _file: Express.Multer.File, callback: (error: Error | null, destination: string) => void) => {
-        const folderName = req.user['sub'];
+        const folderName = req.params.id;
         const folderPath = resolve(__dirname, process.env.FILE_UPLOAD_DEST, folderName);
         const isFolderExists = existsSync(folderPath) || mkdirSync(folderPath, { recursive: true });
 

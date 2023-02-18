@@ -1,8 +1,6 @@
-import {
-  Body, Controller, HttpCode, HttpStatus, Post, Get, Res, UseGuards
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Get, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { fillObject, JwtAuthGuard } from '@guitar-shop/core';
 import { UserService } from './user.service';
 import { UserAuthMessages } from './user.constant';
@@ -20,30 +18,16 @@ export class UserController {
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
-  @ApiResponse({
-    type: UserRdo,
-    status: HttpStatus.CREATED,
-    description: 'Resource for user registration',
-  })
-  @ApiResponse({
-    status: HttpStatus.BAD_REQUEST,
-    description: UserAuthMessages.ALREADY_EXISTS
-  })
+  @ApiResponse({ status: HttpStatus.CREATED, description: 'Resource for user registration', type: UserRdo })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: UserAuthMessages.ALREADY_EXISTS })
   public async create(@Body() dto: CreateUserDto) {
     const newUser = await this.userService.register(dto);
     return fillObject(UserRdo, newUser);
   }
 
   @Post('login')
-  @ApiResponse({
-    type: LoggedUserRdo,
-    status: HttpStatus.OK,
-    description: UserAuthMessages.LOGIN,
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: `${UserAuthMessages.WRONG_PASSWORD} or ${UserAuthMessages.WRONG_LOGIN}`
-  })
+  @ApiResponse({ status: HttpStatus.OK, description: UserAuthMessages.LOGIN, type: LoggedUserRdo })
+  @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: `${UserAuthMessages.WRONG_PASSWORD} or ${UserAuthMessages.WRONG_LOGIN}` })
   public async login(@Body() dto: LoginUserDto) {
     const verifiedUser = await this.userService.verifyUser(dto);
     return this.userService.loginUser(verifiedUser);
@@ -51,15 +35,9 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Get('login')
-  @ApiResponse({
-    type: LoggedUserRdo,
-    status: HttpStatus.OK,
-    description: UserAuthMessages.LOGIN,
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: `${UserAuthMessages.WRONG_PASSWORD} or ${UserAuthMessages.WRONG_LOGIN}`
-  })
+  @ApiBearerAuth()
+  @ApiResponse({ status: HttpStatus.OK, description: UserAuthMessages.LOGIN, type: LoggedUserRdo })
+  @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: `${UserAuthMessages.WRONG_PASSWORD} or ${UserAuthMessages.WRONG_LOGIN}` })
   public async checkAuth(@Res() res: Response) {
     return res.status(HttpStatus.OK).send({ message: UserAuthMessages.OK });
   }

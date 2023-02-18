@@ -11,8 +11,8 @@ export class OrderEntity implements Entity<OrderEntity, Order>, Order {
   public createdAt: Date;
   public updatedAt: Date;
 
-  constructor(user: Order) {
-    this.fillEntity(user);
+  constructor(order: Order) {
+    this.fillEntity(order);
   }
 
   public toObject() {
@@ -38,12 +38,12 @@ export class OrderEntity implements Entity<OrderEntity, Order>, Order {
     return total;
   }
 
-  public fillEntity(user: Order) {
-    this.id = user.id;
-    this.orderList = user.orderList;
+  public fillEntity(order: Order) {
+    this.id = order.id;
+    this.orderList = order.orderList;
     this.quantity = this.getTotalQuantity();
     this.total = this.getTotalPrice();
-    this.createdAt = user.createdAt || new Date();
-    this.updatedAt = user.updatedAt || new Date();
+    this.createdAt = order.createdAt || new Date();
+    this.updatedAt = order.updatedAt || new Date();
   }
 }

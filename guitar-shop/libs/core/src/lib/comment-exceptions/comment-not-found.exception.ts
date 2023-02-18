@@ -1,11 +1,11 @@
 import { NotFoundException, Logger } from '@nestjs/common';
 
-export class UserNotAdminException extends NotFoundException {
+export class CommentNotFoundException extends NotFoundException {
   constructor(
     private readonly logger: Logger,
-    userId: string
+    id: number
   ) {
-    const message = `User with the id — ${userId} is not admin`;
+    const message = `There are no comments for product with the id — ${id}`;
     super(message);
     this.logger.error(message);
   }

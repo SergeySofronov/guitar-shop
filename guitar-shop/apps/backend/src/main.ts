@@ -10,6 +10,10 @@ async function bootstrap() {
     .setTitle('Guitar Shop')
     .setDescription('Guitar Shop service API')
     .setVersion('1.0')
+    .addBearerAuth({
+      type: 'http',
+      description: 'Enter your Bearer token',
+    })
     .build();
 
   const globalPrefix = 'guitar-shop';

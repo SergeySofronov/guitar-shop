@@ -7,4 +7,6 @@ export * from './lib/crud-repository.interface';
 export * from './lib/helpers';
 export * from './lib/validate';
 export * from './lib/users-exceptions';
+export * from './lib/product-exceptions';
+export * from './lib/comment-exceptions';
 export * from './lib/decorators';
