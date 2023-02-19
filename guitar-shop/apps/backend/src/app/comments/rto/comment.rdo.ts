@@ -4,6 +4,13 @@ import { CommentValidity as CV } from '../comment.constant';
 
 export class CommentRdo {
   @ApiProperty({
+    description: 'Comment unique identifier',
+    example: 1,
+  })
+  @Expose()
+  public id: string;
+
+  @ApiProperty({
     description: 'User unique identifier',
     example: 1,
     minimum: CV.IdMinValue,
@@ -20,7 +27,7 @@ export class CommentRdo {
   public productId: number;
 
   @ApiProperty({
-    description: 'Product unique identifier',
+    description: 'User rating of the product',
     example: 1,
     minimum: CV.ScoreMinValue,
     maximum: CV.ScoreMaxValue,
@@ -30,8 +37,8 @@ export class CommentRdo {
 
 
   @ApiProperty({
-    description: 'User name',
-    example: 'John Doe',
+    description: 'The content of the comment',
+    example: 'The guitar has a great color, good wood. Heavy, there is no cover and belt included',
     minimum: CV.ContentMinLength,
     maximum: CV.ContentMaxLength,
   })
@@ -55,4 +62,18 @@ export class CommentRdo {
   })
   @Expose()
   public disadvantages: string;
+
+  @ApiProperty({
+    description: 'Date the comment was created',
+    example: `${new Date()}`,
+  })
+  @Expose()
+  public createdAt: Date;
+
+  @ApiProperty({
+    description: 'Date the comment was updated',
+    example: `${new Date()}`,
+  })
+  @Expose()
+  public updatedAt: Date;
 }

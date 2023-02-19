@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsI
 ###
 
 
-# Авторизоваться (получить токен)
+# Авторизоваться (пользователь)
 POST /guitar-shop/users/login HTTP/1.1
 Host: localhost:3333
 Content-Type: application/json

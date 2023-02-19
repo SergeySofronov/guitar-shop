@@ -26,7 +26,8 @@ export class MailService {
     })
   }
 
-  public async sendNotifyNewOrder(admin: User, order: Order) {
+  public async sendNotifyNewOrder(admin: UserEntity, order: Order) {
+    console.log(admin)
     await this.mailerService.sendMail({
       to: admin.email,
       subject: EmailSubject.EMAIL_ADD_NEW_ORDER_SUBJECT,

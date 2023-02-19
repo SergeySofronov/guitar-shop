@@ -11,7 +11,7 @@ export class OrderEntity implements Entity<OrderEntity, Order>, Order {
   public createdAt: Date;
   public updatedAt: Date;
 
-  constructor(order: Order) {
+  constructor(order: Partial<Order>) {
     this.fillEntity(order);
   }
 
@@ -38,7 +38,7 @@ export class OrderEntity implements Entity<OrderEntity, Order>, Order {
     return total;
   }
 
-  public fillEntity(order: Order) {
+  public fillEntity(order: Partial<Order>) {
     this.id = order.id;
     this.orderList = order.orderList;
     this.quantity = this.getTotalQuantity();

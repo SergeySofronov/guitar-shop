@@ -3,7 +3,7 @@ import { IsNumber, Min } from 'class-validator';
 import { ValidityMessage as VM } from '@guitar-shop/core';
 import { OrderValidity as OV } from '../order.constant';
 
-export class OrderItemDto {
+export class CreateOrderItemDto {
   @ApiProperty({
     description: 'Product unique identifier',
     example: 1,

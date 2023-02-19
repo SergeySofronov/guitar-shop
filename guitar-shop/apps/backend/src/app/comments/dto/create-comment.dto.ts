@@ -24,7 +24,7 @@ export class CreateCommentDto {
   public productId: number;
 
   @ApiProperty({
-    description: 'Product unique identifier',
+    description: 'User rating of the product',
     example: 1,
     required: true,
     minimum: CV.ScoreMinValue,
@@ -36,8 +36,8 @@ export class CreateCommentDto {
 
 
   @ApiProperty({
-    description: 'User name',
-    example: 'John Doe',
+    description: 'The content of the comment',
+    example: 'The guitar has a great color, good wood. Heavy, there is no cover and belt included',
     required: true,
     minimum: CV.ContentMinLength,
     maximum: CV.ContentMaxLength,

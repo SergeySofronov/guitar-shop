@@ -94,10 +94,6 @@ export class ProductController {
     return fillObject(ProductRdo, updatedComment);
   }
 
-  @UseGuards(RolesGuard)
-  @UseGuards(JwtAuthGuard)
-  @Roles(`${UserRole.Admin}`)
-  @UseInterceptors(FileInterceptor('photo', getMulterOptions()))
   @Get('/:id/photo')
   @HttpCode(HttpStatus.OK)
   @ApiParam({ name: "id", required: true, description: "Product unique identifier" })

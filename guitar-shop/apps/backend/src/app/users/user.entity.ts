@@ -15,7 +15,7 @@ export class UserEntity implements Entity<UserEntity, User>, User {
   public createdAt: Date;
   public updatedAt: Date;
 
-  constructor(user: User) {
+  constructor(user: Partial<User>) {
     this.fillEntity(user);
   }
 
@@ -33,7 +33,7 @@ export class UserEntity implements Entity<UserEntity, User>, User {
     return { ...this };
   }
 
-  public fillEntity(user: User) {
+  public fillEntity(user: Partial<User>) {
     this.id = user.id;
     this.email = user.email;
     this.name = user.name;
