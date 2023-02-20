@@ -1,6 +1,14 @@
 # Личный проект «Guitar Shop»
 
 * Разработчик: [Сергей Софронов](https://htmlacademy.ru/profile/id1876915).
+* Текущее время разработки: 20 часов 30 минут. Из них:
+    * backend: 18 часов
+    * frontend: 2 часа 30 минут
+* Toggle: (https://track.toggl.com/7018011/projects/189605105/dashboard)
+
+Backend сделан с применением NX, Nest.JS, PostgreSQL+Prisma. Запуск скриптов через nx run backend:serve (backend:db-generate, merge, fill)
+
+Frontend начат с применением CRA + template HTML_Academy (npm run start)
 
 ---
 

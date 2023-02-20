@@ -30,6 +30,7 @@ export class UserController {
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: `${UserAuthMessages.WRONG_PASSWORD} or ${UserAuthMessages.WRONG_LOGIN}` })
   public async login(@Body() dto: LoginUserDto) {
     const verifiedUser = await this.userService.verifyUser(dto);
+    console.log(verifiedUser)
     return this.userService.loginUser(verifiedUser);
   }
 
